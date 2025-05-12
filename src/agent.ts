@@ -5,6 +5,8 @@ export abstract class Agent {
   history: CoreMessage[] = [];
   messages: CoreMessage[] = [];
 
+  abstract generate(prompt: string): Promise<string>;
+
   get model() {
     return google("gemini-2.0-flash-001");
   }
@@ -19,7 +21,7 @@ export abstract class Agent {
 }
 
 export abstract class ToolCallingAgent extends Agent {
-  async run(prompt: string): Promise<string> {
+  async generate(prompt: string): Promise<string> {
     this.messages.push({ role: "user", content: prompt });
     return this.processMessages();
   }

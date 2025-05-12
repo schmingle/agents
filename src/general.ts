@@ -6,7 +6,7 @@ import { Agent } from "./agent";
 dotenv.config();
 
 class GeneralAgent extends Agent {
-  async run(prompt: string): Promise<string> {
+  async generate(prompt: string): Promise<string> {
     const { model, system } = this;
     const response = await generateText({
       prompt,
@@ -25,7 +25,7 @@ const prompt = process.argv[2].trim();
 console.log(`Prompt: ${prompt}`);
 
 const agent = new GeneralAgent();
-agent.run(prompt).then(response => {
+agent.generate(prompt).then(response => {
   console.log(`Response: ${response}`);
 }).catch(error => {
   console.error(`Error: ${error}`);

@@ -35,7 +35,7 @@ const prompt = process.argv[2].trim();
 console.log(`Prompt: ${prompt}`);
 
 const agent = new MyToolCallingAgent();
-agent.run(prompt).then(response => {
+agent.generate(prompt).then(response => {
   console.log(`Response: ${response}`);
 }).catch(error => {
   console.error(`Error: ${error}`);
