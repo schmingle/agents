@@ -26,11 +26,11 @@ export abstract class Agent {
     let text = "";
 
     while (limit > 0) {
-      // Process based on last message
-      const message = this.messages[this.messages.length - 1];
+      // Process based on last message's role
+      const role = this.messages[this.messages.length - 1].role;
 
       // Process non-assistant messages (i.e. user, tool)
-      if (message.role !== "assistant") {
+      if (role !== "assistant") {
         const { messages, model, system, tools } = this;
         const result = await generateText({ messages, model, system, tools });
         this.messages.push(...result.response.messages);
