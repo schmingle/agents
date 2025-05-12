@@ -47,9 +47,8 @@ export class ChatAgent extends Agent {
 }
 
 const message = process.argv[2].trim();
-console.log(`Message: ${message}`);
-
 const agent = new ChatAgent("abc-123");
+console.log(`Message: ${message}`);
 console.log("Response:");
 agent.stream({ message, onChunk: (chunk) => {
   process.stdout.write(chunk);

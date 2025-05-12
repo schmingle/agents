@@ -40,10 +40,9 @@ class ToolCallingAgent extends Agent {
 }
 
 const message = process.argv[2].trim();
-console.log(`Message: ${message}`);
-
 const agent = new ToolCallingAgent();
 agent.generate({ message }).then(response => {
+  console.log(`Message: ${message}`);
   console.log(`Response: ${response}`);
 }).catch(error => {
   console.error(`Error: ${error}`);
