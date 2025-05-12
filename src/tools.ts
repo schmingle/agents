@@ -16,6 +16,7 @@ class ToolCallingAgent extends Agent {
           location: z.string(),
         }),
         execute: async ({ location }) => {
+          console.log(">>> Called tool getNews");
           return dedent`
             Here is the latest local news in ${location}:
             - Mayor Johnson announced he is running for re-election.
@@ -30,6 +31,7 @@ class ToolCallingAgent extends Agent {
           location: z.string(),
         }),
         execute: async ({ location }) => {
+          console.log(">>> Called tool getWeather");
           return `The weather in ${location} is sunny with clear skies`;
         }
       }),
