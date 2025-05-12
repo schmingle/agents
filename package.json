@@ -2,6 +2,7 @@
   "scripts": {
     "general": "ts-node src/general.ts",
     "tools": "ts-node src/tools.ts",
+    "chat": "ts-node src/chat.ts",
     "router": "ts-node src/router.ts",
     "lint": "npx eslint --fix ."
   },
