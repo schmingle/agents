@@ -48,7 +48,7 @@ npm run chat -- "Suggest some activities for this weekend"
 ```
 
 Routing agent
-- routes to several agents (i.e. coordinated basic)
+- routes to multiple agents (i.e. coordinated basic)
 
 ```
 npm run router -- "Write a comedy story about cats and dogs in under 100 words"
