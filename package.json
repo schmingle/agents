@@ -1,7 +1,7 @@
 {
   "scripts": {
     "general": "ts-node src/general.ts",
-    "toolCalling": "ts-node src/toolCalling.ts",
+    "tools": "ts-node src/tools.ts",
     "router": "ts-node src/router.ts",
     "lint": "npx eslint --fix ."
   },

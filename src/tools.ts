@@ -7,7 +7,7 @@ import { Agent } from "./agent";
 
 dotenv.config();
 
-class MyToolCallingAgent extends Agent {
+class ToolCallingAgent extends Agent {
   get tools() {
     return {
       getNews: tool({
@@ -40,7 +40,7 @@ class MyToolCallingAgent extends Agent {
 const message = process.argv[2].trim();
 console.log(`Message: ${message}`);
 
-const agent = new MyToolCallingAgent();
+const agent = new ToolCallingAgent();
 agent.generate({ message }).then(response => {
   console.log(`Response: ${response}`);
 }).catch(error => {
