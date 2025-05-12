@@ -26,18 +26,37 @@ export abstract class Agent {
 # Run Examples
 
 General agent
+- message stream processing
 
 ```
 npm run general -- "What is the capital of France?"
 ```
 
 Tool-calling agent
+- has multiple tools it can call (i.e. external knowledge)
 
 ```
 npm run tools -- "How's the weather in Paris?"
 ```
 
+Chat agent
+- streams responses (i.e. real-time)
+- loads prior history (i.e. stateful)
+
+```
+npm run chat -- "Suggest some activities for this weekend"
+```
+
 Routing agent
+- routes to several agents (i.e. coordinated basic)
+
 ```
 npm run router -- "Write a comedy story about cats and dogs in under 100 words"
+```
+
+Coordinated agent
+- coordinator agent using multiple agents (i.e. coordinated advanced)
+
+```
+npm run coordinated -- "How should I plan for the thunderstorm predicted this weekend?"
 ```
