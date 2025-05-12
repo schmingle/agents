@@ -17,7 +17,10 @@ class ComedyWriterAgent extends Agent {
         parameters: z.object({
           length: z.number().default(100).optional().describe("The maximum length of the story in words"),
         }),
-        execute: async () => "ROUTED",
+        execute: async ({ length }) => {
+          console.log(">>> Routing to", this.agentName, "params:", { length });
+          return "ROUTED";
+        },
       }),
     }
   }
@@ -37,7 +40,10 @@ class RomanceWriterAgent extends Agent {
         parameters: z.object({
           length: z.number().default(100).optional().describe("The maximum length of the story in words"),
         }),
-        execute: async () => "ROUTED",
+        execute: async ({ length }) => {
+          console.log(">>> Routing to", this.agentName, "params:", { length });
+          return "ROUTED";
+        },
       }),
     }
   }
@@ -58,8 +64,8 @@ class GeneralWriterAgent extends Agent {
           genre: z.string().optional().describe("The genre of the story"),
           length: z.number().default(100).optional().describe("The maximum length of the story in words"),
         }),
-        execute: async ({ genre }) => {
-          console.log(">>>", this.agentName, genre);
+        execute: async ({ genre, length }) => {
+          console.log(">>> Routing to", this.agentName, "params:", { genre, length });
           return "ROUTED";
         },
       }),
@@ -101,7 +107,6 @@ class RoutingAgent extends Agent {
         const agentName = message.content.find((part) => part.type === "tool-result").toolName || "default";
         const agent = this.agents[agentName];
         if (!agent) throw new Error(`Routed to unknown agent ${agentName}`);
-        console.log(">>> Routing to agent", agentName);
 
         // Hand over message stream to agent; we filter out routing messages
         const messagesFiltered = this.messages.filter((message) => message.role === "user");
