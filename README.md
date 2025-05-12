@@ -8,7 +8,7 @@ Run this in your terminal (in the project root):
 
 ```
 npm install
-echo "GEMINI_API_KEY=YOUR_API_KEY" > .env
+echo "GOOGLE_GENERATIVE_AI_API_KEY=YOUR_API_KEY" > .env
 ```
 
 If you want to use a different provider, just check out the [Vercel docs](https://ai-sdk.dev/docs/introduction) for the env var name you need to set and update the code with the model you want.
