@@ -13,7 +13,7 @@ class ToolCallingAgent extends Agent {
       getNews: tool({
         description: "Get the news in a given location",
         parameters: z.object({
-          location: z.string(),
+          location: z.string().describe("The location to get the news for"),
         }),
         execute: async ({ location }) => {
           console.log(">>> Called tool getNews");
@@ -28,7 +28,7 @@ class ToolCallingAgent extends Agent {
       getWeather: tool({
         description: "Get the weather in a given location",
         parameters: z.object({
-          location: z.string(),
+          location: z.string().describe("The location to get the weather for"),
         }),
         execute: async ({ location }) => {
           console.log(">>> Called tool getWeather");
