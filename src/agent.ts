@@ -20,17 +20,27 @@ export abstract class Agent {
   }
 
   async processMessages(): Promise<string> {
-    let limit = 10;
+    if (!this.messages.length) throw new Error("No messages provided");
     
-    while (limit > 0) {
-      // Process user and tool messages
-      const { messages, model, system, tools } = this;
-      const result = await generateText({ messages, model, system, tools });
-      this.messages.push(...result.response.messages);
+    let limit = 10; // Just in case
+    let text = "";
 
-      // Done if we got an assistant message
+    while (limit > 0) {
+      // Process based on last message
       const message = this.messages[this.messages.length - 1];
-      if (message.role === "assistant") return result.text;
+
+      // Process non-assistant messages (i.e. user, tool)
+      if (message.role !== "assistant") {
+        const { messages, model, system, tools } = this;
+        const result = await generateText({ messages, model, system, tools });
+        this.messages.push(...result.response.messages);
+        text = result.text;
+      }
+      // Done if we got an assistant message
+      else {
+        if (!text) throw new Error("No text generated");
+        return text;
+      }
 
       limit--;
     }
