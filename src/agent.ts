@@ -22,7 +22,7 @@ export abstract class Agent {
   async processMessages(): Promise<string> {
     if (!this.messages.length) throw new Error("No messages provided");
     
-    let limit = 10; // Just in case
+    let limit = 20; // Just in case
     let text = "";
 
     while (limit > 0) {
