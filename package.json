@@ -4,6 +4,7 @@
     "tools": "ts-node src/tools.ts",
     "chat": "ts-node src/chat.ts",
     "router": "ts-node src/router.ts",
+    "coordinated": "ts-node src/coordinated.ts",
     "lint": "npx eslint --fix ."
   },
   "dependencies": {
