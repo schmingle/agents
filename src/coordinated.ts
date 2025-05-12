@@ -126,8 +126,6 @@ class AnswerEvaluatorAgent extends Agent {
 }
 
 class CoordinatedAgent extends Agent {
-  agents: Record<string, Agent>;
-
   get system() {
     return dedent`
       You are a an advanced agent that follows a specific workflow to maximize the quality of your answers to a user's queries.
