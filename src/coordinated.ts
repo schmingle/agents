@@ -33,7 +33,7 @@ class CoreIntentAgent extends Agent {
     }
   }
 
-  get system() {
+  get instructions() {
     return "You are an expert at determining the core intent of a user's query.";
   }
 }
@@ -79,7 +79,7 @@ class IdealAnswerAgent extends Agent {
     }
   }
 
-  get system() {
+  get instructions() {
     return "You are an expert at determining the core intent of a user's query.";
   }
 }
@@ -108,9 +108,8 @@ class AnswerEvaluatorAgent extends Agent {
 
             [Core intent]
             ${intent}
-
-            ${answers.map((answer, index) => `[Answer candidate ${index + 1}]\n\n${answer}`).join("\n\n")}
-          `;
+          ` + "\n\n" + answers.map((answer, index) => `[Answer candidate ${index + 1}]\n${answer}`).join("\n\n");
+          console.log("message", message);
           const agent = new this();
           const response = await agent.generate({ message });
           console.log(`>>> ${this.agentName} Response: ${response}`);
@@ -120,13 +119,13 @@ class AnswerEvaluatorAgent extends Agent {
     }
   }
 
-  get system() {
+  get instructions() {
     return "You are an expert at determining the core intent of a user's query.";
   }
 }
 
 class CoordinatedAgent extends Agent {
-  get system() {
+  get instructions() {
     return dedent`
       You are a an advanced agent that follows a specific workflow to maximize the quality of your answers to a user's queries. You must follow this workflow exactly and in the specified order.
 

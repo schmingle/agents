@@ -17,7 +17,7 @@ export class ChatAgent extends Agent {
     this.messages.push({ role: "user", content: message });
 
     // Stream response
-    const { messages, model, system } = this;
+    const { messages, model, instructions: system } = this;
     const { textStream } = streamText({ model, system, messages });
     for await (const chunk of textStream) {
       onChunk(chunk);
@@ -41,7 +41,7 @@ export class ChatAgent extends Agent {
     }];
   }
 
-  get system() {
+  get instructions() {
     return "You are a helpful assistant";
   }
 }

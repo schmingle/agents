@@ -25,7 +25,7 @@ class ComedyWriterAgent extends Agent {
     }
   }
 
-  get system() {
+  get instructions() {
     return "You are an expert writer of comedy stories";
   }
 }
@@ -48,7 +48,7 @@ class RomanceWriterAgent extends Agent {
     }
   }
 
-  get system() {
+  get instructions() {
     return "You are an expert writer of romance stories";
   }
 }
@@ -72,7 +72,7 @@ class GeneralWriterAgent extends Agent {
     }
   }
 
-  get system() {
+  get instructions() {
     return "You are an expert writer of any genre.";
   }
 }
@@ -97,7 +97,7 @@ class RoutingAgent extends Agent {
 
       // Process user message
       if (message.role === "user") {
-        const { messages, model, system, tools } = this;
+        const { messages, model, instructions: system, tools } = this;
         const result = await generateText({ messages, model, system, tools });
         this.messages.push(...result.response.messages);    
       }
@@ -122,7 +122,7 @@ class RoutingAgent extends Agent {
     throw new Error("Exhausted attempts to process messages");
   }
 
-  get system() {
+  get instructions() {
     return "You are a routing agent that routes messages to the correct agent. You will only respond with a tool call to the correct agent.";
   }
 

@@ -31,7 +31,7 @@ export abstract class Agent {
 
       // Process non-assistant messages (i.e. user, tool)
       if (role !== "assistant") {
-        const { messages, model, system, tools } = this;
+        const { messages, model, instructions: system, tools } = this;
         const result = await generateText({ messages, model, system, tools });
         this.messages.push(...result.response.messages);
         text = result.text;
@@ -48,12 +48,12 @@ export abstract class Agent {
     throw new Error("Exhausted attempts to process messages");
   }
 
-  get model() {
-    return google("gemini-2.0-flash-lite");
+  get instructions() {
+    return undefined;
   }
 
-  get system() {
-    return undefined;
+  get model() {
+    return google("gemini-2.0-flash-001");
   }
 
   get tools() {

@@ -5,7 +5,7 @@ import { Agent } from "./agent";
 dotenv.config();
 
 export class GeneralAgent extends Agent {
-  get system() {
+  get instructions() {
     return "You are a helpful assistant";
   }
 }
