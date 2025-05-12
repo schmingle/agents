@@ -34,7 +34,9 @@ class RomanceWriterAgent extends Agent {
     return {
       [this.agentName]: tool({
         description: "I am a romance writing agent. Call me if the user wants a romance story.",
-        parameters: z.object({}),
+        parameters: z.object({
+          length: z.number().default(100).optional().describe("The maximum length of the story in words"),
+        }),
         execute: async () => "ROUTED",
       }),
     }
@@ -53,7 +55,8 @@ class GeneralWriterAgent extends Agent {
       [this.agentName]: tool({
         description: "I am a general agent. Call me if no other agent is suitable.",
         parameters: z.object({
-          genre: z.string().describe("The genre of the story").optional(),
+          genre: z.string().optional().describe("The genre of the story"),
+          length: z.number().default(100).optional().describe("The maximum length of the story in words"),
         }),
         execute: async ({ genre }) => {
           console.log(">>>", this.agentName, genre);
