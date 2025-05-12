@@ -5,24 +5,17 @@ export abstract class Agent {
   history: CoreMessage[] = [];
   messages: CoreMessage[] = [];
 
-  abstract generate(prompt: string): Promise<string>;
-
-  get model() {
-    return google("gemini-2.0-flash-001");
-  }
-
-  get system() {
-    return undefined;
-  }
-
-  get tools() {
-    return {};
-  }
-}
-
-export abstract class ToolCallingAgent extends Agent {
-  async generate(prompt: string): Promise<string> {
-    this.messages.push({ role: "user", content: prompt });
+  async generate({ message, messages }: {
+    message?: string,
+    messages?: CoreMessage[]
+  }): Promise<string> {
+    if (message) {
+      this.messages.push({ role: "user", content: message });
+    } else if (messages) {
+      this.messages.push(...messages);
+    } else {
+      throw new Error("No message or messages provided");
+    }
     return this.processMessages();
   }
 
@@ -43,5 +36,17 @@ export abstract class ToolCallingAgent extends Agent {
     }
 
     throw new Error("Exhausted attempts to process messages");
+  }
+
+  get model() {
+    return google("gemini-2.0-flash-lite");
+  }
+
+  get system() {
+    return undefined;
+  }
+
+  get tools() {
+    return {};
   }
 }

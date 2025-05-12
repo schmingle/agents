@@ -3,11 +3,11 @@ import dedent from "dedent";
 import * as dotenv from "dotenv";
 import { z } from "zod";
 
-import { ToolCallingAgent } from "./agent";
+import { Agent } from "./agent";
 
 dotenv.config();
 
-class MyToolCallingAgent extends ToolCallingAgent {
+class MyToolCallingAgent extends Agent {
   get tools() {
     return {
       getNews: tool({
@@ -37,11 +37,11 @@ class MyToolCallingAgent extends ToolCallingAgent {
   }
 }
 
-const prompt = process.argv[2].trim();
-console.log(`Prompt: ${prompt}`);
+const message = process.argv[2].trim();
+console.log(`Message: ${message}`);
 
 const agent = new MyToolCallingAgent();
-agent.generate(prompt).then(response => {
+agent.generate({ message }).then(response => {
   console.log(`Response: ${response}`);
 }).catch(error => {
   console.error(`Error: ${error}`);
