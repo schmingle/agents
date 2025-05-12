@@ -1,4 +1,5 @@
 import { tool } from "ai";
+import dedent from "dedent";
 import * as dotenv from "dotenv";
 import { z } from "zod";
 
@@ -9,13 +10,18 @@ dotenv.config();
 class MyToolCallingAgent extends ToolCallingAgent {
   get tools() {
     return {
-      getCurrentTime: tool({
-        description: "Get the current time in a given location",
+      getNews: tool({
+        description: "Get the news in a given location",
         parameters: z.object({
           location: z.string(),
         }),
-        execute: async () => {
-          return `The current time is ${new Date().toLocaleTimeString()}`;
+        execute: async ({ location }) => {
+          return dedent`
+            Here is the latest local news in ${location}:
+            - Mayor Johnson announced he is running for re-election.
+            - ${location} Zoo is having a new exhibit opening this weekend.
+            - Tourism is at an all-time high in ${location}.
+          `;
         }
       }),
       getWeather: tool({
