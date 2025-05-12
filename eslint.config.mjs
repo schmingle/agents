@@ -11,6 +11,7 @@ export default defineConfig([
     extends: ["js/recommended"],
     rules: {
       indent: ["error", 2],
+      "no-tabs": "error",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error"
     }

@@ -28,7 +28,7 @@ export abstract class ToolCallingAgent extends Agent {
 
   async processMessages(): Promise<string> {
     let limit = 10;
-		
+    
     while (limit > 0) {
       // Process user and tool messages
       const { messages, model, system, tools } = this;

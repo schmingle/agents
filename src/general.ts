@@ -13,7 +13,7 @@ class GeneralAgent extends Agent {
       model,
       system,
     });
-    return response.text;	
+    return response.text;
   }
 
   get system() {
