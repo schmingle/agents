@@ -109,7 +109,6 @@ class AnswerEvaluatorAgent extends Agent {
             [Core intent]
             ${intent}
           ` + "\n\n" + answers.map((answer, index) => `[Answer candidate ${index + 1}]\n${answer}`).join("\n\n");
-          console.log("message", message);
           const agent = new this();
           const response = await agent.generate({ message });
           console.log(`>>> ${this.agentName} Response: ${response}`);
