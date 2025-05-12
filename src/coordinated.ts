@@ -128,9 +128,9 @@ class AnswerEvaluatorAgent extends Agent {
 class CoordinatedAgent extends Agent {
   get system() {
     return dedent`
-      You are a an advanced agent that follows a specific workflow to maximize the quality of your answers to a user's queries.
+      You are a an advanced agent that follows a specific workflow to maximize the quality of your answers to a user's queries. You must follow this workflow exactly and in the specified order.
 
-      The workflow is as follows:
+      [Your workflow]
       1. First, you will determine the core intent of the user's query.
       2. Then, you will determine what a great answer would look like based on the core intent.
       3. Then you will generate several answers based on the core intent and what a great answer would look like.
