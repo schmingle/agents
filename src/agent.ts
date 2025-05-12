@@ -31,8 +31,8 @@ export abstract class Agent {
 
       // Process non-assistant messages (i.e. user, tool)
       if (role !== "assistant") {
-        const { messages, model, instructions: system, tools } = this;
-        const result = await generateText({ messages, model, system, tools });
+        const { messages, model, instructions: system, tools, settings } = this;
+        const result = await generateText({ messages, model, system, tools, ...settings });
         this.messages.push(...result.response.messages);
         text = result.text;
       }
@@ -54,6 +54,14 @@ export abstract class Agent {
 
   get model() {
     return google("gemini-2.0-flash-001");
+  }
+
+  get settings() {
+    return {
+      temperature: 0.5,
+      topK: 20,
+      maxTokens: 500,
+    };
   }
 
   get tools() {

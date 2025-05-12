@@ -139,6 +139,14 @@ class CoordinatedAgent extends Agent {
     `;
   }
 
+  get settings() {
+    // More tokens thinking overhead
+    return {
+      ...super.settings,
+      maxTokens: 2000,
+    };
+  }
+
   get tools() {
     return {
       ...CoreIntentAgent.agentTool(),

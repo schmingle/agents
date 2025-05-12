@@ -126,6 +126,15 @@ class RoutingAgent extends Agent {
     return "You are a routing agent that routes messages to the correct agent. You will only respond with a tool call to the correct agent.";
   }
 
+  get settings() {
+    // More deterministic
+    return {
+      temperature: 0.1,
+      topK: 10,
+      maxTokens: 100,
+    };
+  }
+
   get tools() {
     return {
       ...ComedyWriterAgent.agentTool(),
