@@ -4,7 +4,7 @@ Get a Gemini API key:
 
 https://ai.google.dev/gemini-api/docs/api-key
 
-Run this in your terminal:
+Run this in your terminal (in the project root):
 
 ```
 npm install
