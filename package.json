@@ -1,7 +1,8 @@
 {
   "scripts": {
     "general": "ts-node src/general.ts",
-    "toolCalling": "ts-node src/toolCalling.ts"
+    "toolCalling": "ts-node src/toolCalling.ts",
+    "lint": "npx eslint --fix ."
   },
   "dependencies": {
     "@ai-sdk/google": "^1.2.17",
@@ -9,8 +10,13 @@
     "dotenv": "^16.5.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.26.0",
     "@types/dotenv": "^6.1.1",
+    "eslint": "^9.26.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.1.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.0"
   }
 }

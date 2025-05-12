@@ -1,45 +1,45 @@
 import { google } from "@ai-sdk/google";
-import { CoreAssistantMessage, CoreMessage, generateText } from "ai";
+import { CoreMessage, generateText } from "ai";
 
 export abstract class Agent {
-	history: CoreMessage[] = [];
-	messages: CoreMessage[] = [];
+  history: CoreMessage[] = [];
+  messages: CoreMessage[] = [];
 
-	get model() {
-		return google("gemini-2.0-flash-001");
-	}
+  get model() {
+    return google("gemini-2.0-flash-001");
+  }
 
-	get system() {
-		return undefined;
-	}
+  get system() {
+    return undefined;
+  }
 
-	get tools() {
-		return {};
-	}
+  get tools() {
+    return {};
+  }
 }
 
 export abstract class ToolCallingAgent extends Agent {
-	async run(prompt: string): Promise<string> {
-		this.messages.push({ role: "user", content: prompt });
-		return this.processMessages();
-	}
+  async run(prompt: string): Promise<string> {
+    this.messages.push({ role: "user", content: prompt });
+    return this.processMessages();
+  }
 
-	async processMessages(): Promise<string> {
-		let limit = 10;
+  async processMessages(): Promise<string> {
+    let limit = 10;
 		
-		while (limit > 0) {
-			// Process user and tool messages
-			const { messages, model, system, tools } = this;
-			const result = await generateText({ messages, model, system, tools });
-			this.messages.push(...result.response.messages);
+    while (limit > 0) {
+      // Process user and tool messages
+      const { messages, model, system, tools } = this;
+      const result = await generateText({ messages, model, system, tools });
+      this.messages.push(...result.response.messages);
 
-			// Done if we got an assistant message
-			const message = this.messages[this.messages.length - 1];
-			if (message.role === "assistant") return result.text;
+      // Done if we got an assistant message
+      const message = this.messages[this.messages.length - 1];
+      if (message.role === "assistant") return result.text;
 
-			limit--;
-		}
+      limit--;
+    }
 
-		throw new Error("Exhausted attempts to process messages");
-	}
+    throw new Error("Exhausted attempts to process messages");
+  }
 }
