@@ -18,11 +18,7 @@ export class ChatAgent extends Agent {
 
     // Stream response
     const { messages, model, system } = this;
-    const { textStream} = streamText({
-      model,
-      system,
-      messages: [...messages, { role: "user", content: message }],
-    });
+    const { textStream } = streamText({ model, system, messages });
     for await (const chunk of textStream) {
       onChunk(chunk);
     }
