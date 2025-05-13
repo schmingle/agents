@@ -1,3 +1,10 @@
+# Intro
+
+This repo contains examples to accompany my article on how to build agents from scratch. Give it a read if you haven't already!
+
+- [How to build an agent from scratch - Part 1](https://testinprod.substack.com/p/a-practical-look-at-developing-agents)
+- [How to build an agent from scratch - Part 2](https://open.substack.com/pub/testinprod/p/how-to-build-an-agent-from-scratch)
+
 # Setup
 
 Get a Gemini API key:
